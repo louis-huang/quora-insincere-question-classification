@@ -7,4 +7,5 @@ The repository for quora insincere question classification
 </object>
 
 
-<embed src="https://github.com/louis-huang/quora-insincere-question-classification/blob/master/540%20fina-Gaoyuan%20Huang.pdf" width="500" height="375">
+<embed src="https://github.com/louis-huang/quora-insincere-question-classification/blob/master/540%20fina-Gaoyuan%20Huang.pdf" width="500" height="375" 
+ type="application/pdf">
