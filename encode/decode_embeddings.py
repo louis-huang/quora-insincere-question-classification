@@ -5,28 +5,38 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score, confusion_matrix
 
-output_file = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/word embeddings/encoded_train_quora.npy"
+embedding_file = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/word embeddings/encoded_train_quora.npy"
+embedding_file_2 = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/word embeddings/encoded_train_quora_1.npy"
+embedding_file_3 = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/word embeddings/encoded_train_quora_2.npy"
+
 input_file = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/data/subset_train.csv"
+input_file_2 = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/data/data_left.csv"
+
 out_dir = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/model/"
 test_embeddings_file = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/word embeddings/encoded_test_quora.npy"
 sub_dir = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/data/sample_submission.csv"
 prediction_dir = "/Users/gaoyuan.huang/Desktop/school/quora-insincere-question-classification/submission/"
 
-doc_vecs = np.load(output_file)
+doc_vecs = np.load(embedding_file)
+doc_vecs_2 = np.load(embedding_file_2)
+doc_vecs_3 = np.load(embedding_file_3)
 
 data = pd.read_csv(input_file)
+data_left = pd.read_csv(input_file_2).iloc[:(180000*2),:]
 
-
+#merge data
+doc_vecs = np.row_stack((doc_vecs,doc_vecs_2,doc_vecs_3))
+target = np.hstack((data.target, data_left.target))
 #train model
 
 
 def save_model(model):
-    output = open(out_dir + 'logistic_model.pkl', 'wb')
+    output = open(out_dir + 'logistic_model_2.pkl', 'wb')
     pickle.dump(model, output)
     output.close()
 
 
-x_tr, x_te, y_tr, y_te = train_test_split(doc_vecs, data.target, random_state=1024)
+x_tr, x_te, y_tr, y_te = train_test_split(doc_vecs, target, random_state=1024,test_size=0.3)
 
 clf = LogisticRegression()
 clf.fit(x_tr,y_tr)
@@ -40,9 +50,11 @@ y_pred = clf.predict_proba(x_te)[:,1]
 for thresh in np.arange(0.1, 0.501, 0.01):
     thresh = np.round(thresh, 2)
     print("F1 score at threshold {0} is {1}".format(thresh, f1_score(y_te, (y_pred>thresh).astype(int))))
-#F1 score at threshold 0.39 is 0.8608391108569795
+#F1 score at threshold 0.34 is 0.7548464237411059
+
+
 clf = LogisticRegression()
-clf.fit(doc_vecs, data.target)
+clf.fit(doc_vecs, target)
 save_model(clf)
 
 
