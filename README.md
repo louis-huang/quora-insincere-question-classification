@@ -1,11 +1,6 @@
 # quora-insincere-question-classification
-The repository for quora insincere question classification
-<object data="https://github.com/louis-huang/quora-insincere-question-classification/blob/master/540%20fina-Gaoyuan%20Huang.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://github.com/louis-huang/quora-insincere-question-classification/blob/master/540%20fina-Gaoyuan%20Huang.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/louis-huang/quora-insincere-question-classification/blob/master/540%20fina-Gaoyuan%20Huang.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
 
+<img width="920" alt="Screen Shot 2019-04-04 at 11 52 41 AM" src="https://user-images.githubusercontent.com/32749721/55573723-4c9c2a80-56d0-11e9-8aa5-90d8374fd069.png">
 
-<embed src="https://github.com/louis-huang/quora-insincere-question-classification/blob/master/540%20fina-Gaoyuan%20Huang.pdf" width="500" height="375" 
- type="application/pdf">
+## Result
+<img width="787" alt="Screen Shot 2019-04-04 at 11 52 06 AM" src="https://user-images.githubusercontent.com/32749721/55573698-3ee6a500-56d0-11e9-9483-09278b95d602.png">
